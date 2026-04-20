@@ -31,6 +31,7 @@ For this project:
 
 - base Irodori-TTS cloning runs at `http://127.0.0.1:7860/`
 - VoiceDesign fallback runs at `http://127.0.0.1:7861/`
+- upstream repo: [Aratako/Irodori-TTS](https://github.com/Aratako/Irodori-TTS)
 - `ルノフェン` and `ルノフェット` are the same character; use the `ルノフェット` sample
 
 ### 2. Adapt prose into a production YAML
@@ -146,6 +147,7 @@ scripts/
 ```
 
 If the user already stores manuscripts elsewhere, keep the manuscript where it is and reference that path from the production YAML.
+Do not assume bundled sample voices exist in this repo; user-provided sample audio is the default, and actual sample files may be ignored from version control.
 
 ## Example
 

@@ -16,6 +16,10 @@
 - 参照音声クローン: `http://127.0.0.1:7860/`
 - VoiceDesign fallback: `http://127.0.0.1:7861/`
 
+Irodori-TTS 本体:
+
+- [Aratako/Irodori-TTS](https://github.com/Aratako/Irodori-TTS)
+
 ## ディレクトリ構成
 
 ```text
@@ -29,7 +33,8 @@ SKILL.md
 README.md
 ```
 
-`manuscripts/` と `productions/` は入力置き場です。`.gitkeep` だけを追跡し、実データは `.gitignore` で除外しています。
+`manuscripts/` と `productions/` は入力置き場です。`.gitkeep` だけを追跡し、実データは `.gitignore` で除外しています。  
+サンプル音声は外部から与える想定です。  
 
 ## 主要ファイル
 
@@ -156,9 +161,3 @@ python scripts/recombine_voice_drama.py generated_voice_drama/<timestamp>/<group
 - hallucination 対策としては、文面調整に加えて ASR 検査 + 再試行が有効です
 - ただし ASR は泣き声や崩れた発話に弱いので、その種別は `asr_skip: true` を使います
 
-## サンプル
-
-このリポジトリには `望郷のカイムスフィア` chapter4 の `42.md` を元にしたサンプル production が入っています。
-
-- `manuscripts/chaimsphere/chapter4/42.md`
-- `productions/chaimsphere/chapter4_42.yaml`
