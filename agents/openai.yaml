@@ -1,0 +1,4 @@
+﻿interface:
+  display_name: "Irodori Voice Drama Pipeline"
+  short_description: "小説本文から台本と音声を作るIrodori用Skill"
+  default_prompt: "Use $irodori-voice-drama-pipeline to turn a manuscript and sample voices into a split voice-drama script and generated audio."

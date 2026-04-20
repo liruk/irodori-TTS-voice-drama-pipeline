@@ -1,0 +1,16 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+generated_voice_drama/*
+!generated_voice_drama/.gitkeep
+
+manuscripts/*
+!manuscripts/.gitkeep
+
+productions/*
+!productions/.gitkeep
+
+tmp_*.wav
+tmp_*.yaml

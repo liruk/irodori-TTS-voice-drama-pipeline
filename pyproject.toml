@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "irodori-voice-drama-pipeline"
+version = "0.1.0"
+description = "Manuscript-to-voice-drama tooling for Irodori-TTS with split script generation support."
+requires-python = ">=3.10"
+dependencies = [
+  "PyYAML>=6.0",
+  "gradio_client>=1.0.0",
+  "httpx>=0.27.0",
+]
+
+[tool.setuptools]
+py-modules = []
