@@ -1,4 +1,4 @@
----
+ï»¿---
 name: irodori-voice-drama-pipeline
 description: Create playable voice-drama scripts and generated audio from Japanese novel manuscript markdown plus character or narration sample voices, using Irodori-TTS for reference-audio cloning on port 7860 and optional VoiceDesign fallback on port 7861. Use when Codex needs to adapt prose into spoken segments, annotate delivery with Irodori emoji controls, split long lines for DiT stability, batch-generate per-line audio, and export both isolated clips and a combined work.
 ---
@@ -31,7 +31,7 @@ For this project:
 
 - base Irodori-TTS cloning runs at `http://127.0.0.1:7860/`
 - VoiceDesign fallback runs at `http://127.0.0.1:7861/`
-- `ƒ‹ƒmƒtƒFƒ“` and `ƒ‹ƒmƒtƒFƒbƒg` are the same character; use the `ƒ‹ƒmƒtƒFƒbƒg` sample
+- `ãƒ«ãƒŽãƒ•ã‚§ãƒ³` and `ãƒ«ãƒŽãƒ•ã‚§ãƒƒãƒˆ` are the same character; use the `ãƒ«ãƒŽãƒ•ã‚§ãƒƒãƒˆ` sample
 
 ### 2. Adapt prose into a production YAML
 
@@ -109,14 +109,29 @@ Run:
 python scripts/generate_voice_drama.py productions/<world>/<scene>.yaml
 ```
 
+When you want automatic hallucination checks, enable lightweight ASR verification with `faster-whisper`:
+
+```bash
+python scripts/generate_voice_drama.py productions/<world>/<scene>.yaml --asr-check --asr-model tiny
+```
+
 The generator will:
 
 - resolve cast aliases
 - split long `tts_text` automatically when `chunks` are absent
 - call the appropriate Irodori server per cast member
+- optionally transcribe generated clips with lightweight ASR and retry failed segments
+- allow `asr_skip: true` on segments where crying or broken speech makes ASR unreliable
 - write per-segment `.wav` files under `generated_voice_drama/<timestamp>/.../segments/`
 - export a combined full-scene `.wav`
 - write `manifest.jsonl` and `manifest.csv`
+- print unresolved ASR failures and also save them to `unresolved_segments.csv` / `unresolved_segments.txt`
+
+If unresolved clips remain after retries, prefer this recovery flow:
+
+1. open `unresolved_segments.csv` or `unresolved_segments.txt`
+2. manually replace the corresponding `segments/<speaker>/*.wav`
+3. run `python scripts/recombine_voice_drama.py generated_voice_drama/<timestamp>/<group>/manifest.csv`
 
 ## Project layout
 
@@ -155,6 +170,7 @@ python scripts/generate_voice_drama.py productions/chaimsphere/chapter4_42.yaml
 - [references/adaptation-guidelines.md](references/adaptation-guidelines.md): prose-to-drama adaptation and chunking rules
 - [scripts/validate_production.py](scripts/validate_production.py): schema validator
 - [scripts/generate_voice_drama.py](scripts/generate_voice_drama.py): audio generation and full-scene assembly
+
 
 
 

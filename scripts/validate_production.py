@@ -98,6 +98,9 @@ def validate(path: Path) -> list[str]:
                     errors.append(f"{prefix}.chunks must be a non-empty list when present")
                 elif not all(str(item).strip() for item in chunks):
                     errors.append(f"{prefix}.chunks cannot contain empty items")
+            asr_skip = segment.get("asr_skip")
+            if asr_skip is not None and not isinstance(asr_skip, bool):
+                errors.append(f"{prefix}.asr_skip must be a boolean when present")
 
     return errors
 

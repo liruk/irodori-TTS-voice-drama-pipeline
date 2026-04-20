@@ -46,6 +46,7 @@ segments:
   - id: s003
     speaker: narration
     text: 長い説明文
+    asr_skip: false
     chunks:
       - ここで一度切る。
       - さらに短く切って読む。
@@ -59,6 +60,7 @@ segments:
 - `speaker` may use either a cast `id` or an alias listed in `aliases`.
 - Prefer `tts_text` when you need emoji annotations, furigana-like rewrites, or punctuation adjustments.
 - Use `chunks` when the sentence is fragile or clearly too long for DiT inference. If omitted, the generator will split automatically.
+- Use `asr_skip: true` for sobs, cries, broken speech, or other segments where transcript-based verification is unreliable.
 - Keep one chunk roughly under `50` to `80` Japanese characters. Push shorter for emotionally unstable or annotation-heavy lines.
 - Put performance pauses in `pause_ms`, not inside giant runs of punctuation.
 

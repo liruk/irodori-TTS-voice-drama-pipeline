@@ -26,6 +26,7 @@ Turn prose into a playable voice-drama script, not a literal line-by-line readin
 - Open ambiguous, literary, or uncommon kanji into hiragana when the intended reading is not guaranteed.
 - Prefer targeted rewrites such as `せいじゃく`, `どうこく`, `かいもく けんとう` over replacing an entire line.
 - If a proper noun already has a stable katakana or kana reading in the project, reuse that exact form.
+- Mark sobbing, wailing, screams, or non-lexical breakdowns with `asr_skip: true` when transcript-based QA would be noisy.
 
 ## Chunking rules
 
